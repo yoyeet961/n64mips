@@ -1,8 +1,7 @@
 macro pixel8_init16(destination, forecolor, backcolor) {
     li a0, {destination}
-    li a1, {forecolor}
+    ori a1, r0, {forecolor}
     jal pixel8_init16
-    lui a2, {backcolor}
-    ori a2, {forecolor}
+    ori a2, r0, {backcolor}
     nop // Returns to here
 }
