@@ -5,10 +5,13 @@ pixel8_init16:
 
     li t0, PIXEL8_START
     ld t1, 0x0(t0)
+    blez t1, set_forecolor
+    nop
 
     // 1100000000000000000000000000000000000000000000000000000000000000
 
-    if ((0xC000000000000000 & 0x01) == 1)
+    if (t1 < 0)
+    if ((t1 & 0x01) == 1)
     assign forecolor
     else
     assign backcolor
