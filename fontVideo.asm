@@ -76,10 +76,11 @@ Start:	                 // NOTE: base $80001000
 	nop
 	nop
 
+	pixel8_init16()
 
-	
 Loop:  // while(true);
 	j Loop
 	nop
 	
-insert "LIB/PIXEL8.FNT"
+align(8)
+include "LIB/PIXEL8_UTIL.S"
