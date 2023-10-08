@@ -1,3 +1,3 @@
 # n64mips
 Learning N64 MIPS Assembly!
-~~what else do i say~~
+Credits to Fraser MIPS for the amazing tutorials!
