@@ -1,9 +1,9 @@
 // N64 Lesson 02 Simple Initialize
 arch n64.cpu
 endian msb
-output "Video005.N64", create
+output "Video005ROM.N64", create
 // 1024 KB + 4 KB = 1028 KB
-fill $0010'1000 // Set ROM Size
+fill $0010'1000 // Set ROM Size '
 
 origin $00000000
 base $80000000
@@ -23,13 +23,12 @@ Start:	                 // NOTE: base $80001000
 	nop
 	nop
 
-// Video Initialization 320x240x16bit
 	lui t0, VI_BASE
 
 	li t1, BPP16
 	sw t1, VI_STATUS(t0)
 
-	li t1, $A010'0000
+	li t1, $A010'0000 // '
 	sw t1, VI_ORIGIN(t0)
 
 	li t1, 320
@@ -67,6 +66,7 @@ Start:	                 // NOTE: base $80001000
 
 	li t1, ($100*(240/60))
 	sw t1, VI_Y_SCALE(t0)
+
 	nop
 	nop
 	nop
@@ -78,7 +78,7 @@ Start:	                 // NOTE: base $80001000
 
 	lui t0, LAWN_GREEN16
 	ori t0, LAWN_GREEN16
-	la t1, $A010'0000
+	la t1, $A010'0000 // '
 	
 	// 320 Pixels Wide	
 	addi t1, t1, ((320 * 15)  + 110) * 2
