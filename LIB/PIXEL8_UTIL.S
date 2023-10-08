@@ -1,20 +1,24 @@
 pixel8_init16:
     //a0 = font_destination
-    //a1 =  forecolor
+    //a1 = forecolor
     //a2 = backcolor
+
+    // 1100000000000000000000000000000000000000000000000000000000000000
+    // 0xC000000000000000
 
     li t0, PIXEL8_START
     ld t1, 0x0(t0)
-    blez t1, set_forecolor
-    nop
+    bltzl t1, _pixel8_init16_continue
+    sh a1, 0x0(a0)
 
-    // 1100000000000000000000000000000000000000000000000000000000000000
+_pixel8_set_forecolor:
+    sh a2, 0x0(a0)
 
+_pixel8_init16_continue:
     if (t1 < 0)
-    if ((t1 & 0x01) == 1)
-    assign forecolor
+        set forecolor
     else
-    assign backcolor
+        set backcolor
 
     // Code
     jr ra
