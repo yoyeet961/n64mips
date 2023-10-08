@@ -18,7 +18,7 @@ _pixel8_init16_do_pixel:
     sll t1, t1, 1
 
 _pixel8_init16_continue:
-    bne t1, r0, _pixel8_init16_do_pixel
+    bne t2, r0, _pixel8_init16_do_pixel
     addi t1, t1, -1
 
     // Code
