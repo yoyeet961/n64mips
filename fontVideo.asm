@@ -75,7 +75,7 @@ Start:	                 // NOTE: base $80001000
 	nop
 	nop
 
-	pixel8_init16($A0130000, RED16, BLACK16)
+	pixel8_init16($A0130000, RED16, BLACK16) // red text, black background
 
 Loop:  // while(true);
 	j Loop
