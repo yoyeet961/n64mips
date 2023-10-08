@@ -7,25 +7,18 @@ output "bassMacrosVideo.N64", create
 fill 1052672 // Set ROM Size. This is 1MB + 4096 for the RAM Size.
 
 origin $00000000
-base $80000000 // Entry Point Of Code
+base $80001000 // Entry Point Of Code
 include "LIB/A64.INC"
 include "LIB/N64.INC" // Include N64 Definitions
 include "LIB/N64_HEADER.ASM" // Include 64 Byte Header & Vector Table
 include "LIB/COLORS16.INC"
-include "LIB/N64_GFX.INC"
 insert "LIB/N64_BOOTCODE.BIN" // Include 4032 Byte Boot Code
 
 Start:
-  // Prevent N64 from Rebooting
-  lui t0, PIF_BASE
-  addi t1, zero, 8
-  sw t1, PIF_CTRL(t0)
 
-  nop
-  nop
-  nop
+  init()
 
-  ScreenNTSC(320, 200, BPP16, 
+  ScreenNTSC(320, 240, BPP16, $A0001000)
 
 	nop
 	nop

@@ -2,6 +2,13 @@ constant BPP0($0000)
 constant BPP16($0002)
 constant BPP32($0003)
 
+macro init() {
+  // Prevent N64 from Rebooting
+  lui t0, PIF_BASE
+  addi t1, zero, 8
+  sw t1, PIF_CTRL(t0)
+}
+
 macro ScreenNTSC(width, height, status, origin) {
     // Video Initialization 320x240x16bit
     lui t0, VI_BASE
@@ -9,10 +16,10 @@ macro ScreenNTSC(width, height, status, origin) {
 	li t1, {status}
 	sw t1, VI_STATUS(t0)
 
-	li t1, $A0100000
+	la t1, {origin}
 	sw t1, VI_ORIGIN(t0)
 
-	li t1, {width}
+	li t1, $200
 	sw t1, VI_WIDTH(t0)
 
 	li t1, {height}
