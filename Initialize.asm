@@ -41,7 +41,7 @@ lui t0, VI_BASE
 
 	li t1, 0
 	sw t1, VI_V_CURRENT_LINE(t0)
-	
+
 	li t1, $3E52239 
 	sw t1, VI_TIMING(t0)
 

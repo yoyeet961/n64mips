@@ -1,3 +1,3 @@
 @echo off
-bass bassMacrosVideo.asm -strict -benchmark
-chksum64 bassMacrosVideo.N64
+bass fontVideo.asm -strict -benchmark
+chksum64 fontVideo.N64

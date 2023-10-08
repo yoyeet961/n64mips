@@ -4,9 +4,9 @@ constant BPP32($0003)
 
 macro init() {
   // Prevent N64 from Rebooting
-  lui t0, PIF_BASE
-  addi t1, zero, 8
-  sw t1, PIF_CTRL(t0)
+  lui t0, PIF_BASE     // t0 = $BFC0 << 16	
+  addi t1, 0, 8	       // t1 = 0 + 8
+  sw t1, PIF_CTRL(t0)  // 0xBFC007FC = 8	
 }
 
 macro ScreenNTSC(width, height, status, origin) {
@@ -16,13 +16,13 @@ macro ScreenNTSC(width, height, status, origin) {
 	li t1, {status}
 	sw t1, VI_STATUS(t0)
 
-	la t1, {origin}
+	li t1, {origin}
 	sw t1, VI_ORIGIN(t0)
 
-	li t1, $200
+	li t1, {width}
 	sw t1, VI_WIDTH(t0)
 
-	li t1, {height}
+	li t1, $200
 	sw t1, VI_V_INTR(t0)
 
 	li t1, 0

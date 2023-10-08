@@ -85,7 +85,7 @@ Start:	                 // NOTE: base $80001000
 	addi t2, t1, 200
 do_Store2Pixels:
 	sw t0, 0x0(t1)	
-	bne t1, t2, do_Store2Pixels
+	//bne t1, t2, do_Store2Pixels
 	addi t1, t1, 4
 	
 Loop:  // while(true);
