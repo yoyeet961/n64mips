@@ -7,18 +7,19 @@ pixel8_init16:
     // 0xC000000000000000
 
     li t0, PIXEL8_START
-    ld t1, 0x0(t0)
+    ld t1, 0x0(t0) // Loaded Font Character
+
+    addi t2, r0, 64
+
+_pixel8_init16_do_pixel:
     bltzl t1, _pixel8_init16_continue
     sh a1, 0x0(a0)
-
-_pixel8_set_forecolor:
     sh a2, 0x0(a0)
+    sll t1, t1, 1
 
 _pixel8_init16_continue:
-    if (t1 < 0)
-        set forecolor
-    else
-        set backcolor
+    bne t1, r0, _pixel8_init16_do_pixel
+    addi t1, t1, -1
 
     // Code
     jr ra
