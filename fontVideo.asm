@@ -12,7 +12,6 @@ include "LIB/N64.INC"
 include "LIB/N64_GFX.INC"
 include "LIB/COLORS16.INC"
 include "LIB/PIXEL8_UTIL.INC"
-include "LIB/PIXEL8_UTIL.S"
 include "LIB/N64_HEADER.ASM"
 insert "LIB/N64_BOOTCODE.BIN"
 
@@ -76,11 +75,11 @@ Start:	                 // NOTE: base $80001000
 	nop
 	nop
 
-	pixel8_init16()
+	pixel8_init16($A0130000, RED16, BLACK16)
 
 Loop:  // while(true);
 	j Loop
 	nop
 	
-align(8)
+ALIGN(8)
 include "LIB/PIXEL8_UTIL.S"

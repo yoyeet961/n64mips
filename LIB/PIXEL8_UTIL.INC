@@ -1,3 +1,3 @@
-macro pixel8_init16(src_start, src_end, destination, forecolor, backcolor) {
+macro pixel8_init16(destination, forecolor, backcolor) {
 
 }
