@@ -3,19 +3,19 @@ constant BPP16($0002)
 constant BPP32($0003)
 
 macro ScreenNTSC(width, height, status, origin) {
-// Video Initialization 320x240x16bit
-	lui t0, VI_BASE
+    // Video Initialization 320x240x16bit
+    lui t0, VI_BASE
 
-	li t1, BPP16
+	li t1, {status}
 	sw t1, VI_STATUS(t0)
 
-	li t1, $A010'0000 // '
+	li t1, $A0100000
 	sw t1, VI_ORIGIN(t0)
 
-	li t1, 320
+	li t1, {width}
 	sw t1, VI_WIDTH(t0)
 
-	li t1, $200
+	li t1, {height}
 	sw t1, VI_V_INTR(t0)
 
 	li t1, 0
@@ -42,9 +42,10 @@ macro ScreenNTSC(width, height, status, origin) {
 	li t1, $E0204        
 	sw t1, VI_V_BURST(t0)
 
-	li t1, ($100*(320/160))
+	li t1, ($100*({width}/160))
 	sw t1, VI_X_SCALE(t0)
 
-	li t1, ($100*(240/60))
+	li t1, ($100*({height}/60))
 	sw t1, VI_Y_SCALE(t0)
+	
 }
