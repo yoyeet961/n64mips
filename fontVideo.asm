@@ -11,8 +11,11 @@ base $80000000
 include "LIB/N64.INC"
 include "LIB/N64_GFX.INC"
 include "LIB/COLORS16.INC"
-include "LIB/N64_HEADER.asm"
+include "LIB/PIXEL8_UTIL.INC"
+include "LIB/PIXEL8_UTIL.S"
+include "LIB/N64_HEADER.ASM"
 insert "LIB/N64_BOOTCODE.BIN"
+
 
 Start:	                 // NOTE: base $80001000
 	// Prevent N64 from Rebooting
@@ -73,24 +76,10 @@ Start:	                 // NOTE: base $80001000
 	nop
 	nop
 
-// Draw a Line (Horizontal)
-	// 15 rows from the top
-	// 110 Columns (110 + 100 + 110 = 320) 
-	// 100 Pixels long
 
-	lui t0, LAWN_GREEN16
-	ori t0, LAWN_GREEN16
-	la t1, $A010'0000 // '
-	
-	// 320 Pixels Wide	
-	addi t1, t1, ((320 * 15)  + 110) * 2
-	addi t2, t1, 200
-do_Store2Pixels:
-	sw t0, 0x0(t1)	
-	//bne t1, t2, do_Store2Pixels
-	addi t1, t1, 4
 	
 Loop:  // while(true);
 	j Loop
 	nop
 	
+insert "LIB/PIXEL8.FNT"
