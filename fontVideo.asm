@@ -16,13 +16,13 @@ include "LIB/PIXEL8_UTIL.INC"
 include "LIB/N64_HEADER.ASM"
 insert "LIB/N64_BOOTCODE.BIN"
 
-constant red_black($A0101000) // red text, black background
-constant fbl($A0100000)
+constant red_black($A0201000) // red text, black background
+constant fb1($A0100000)
 
 Start:	                 // NOTE: base $80000000
 	init()
 
-	ScreenNTSC(320, 240, BPP16, fbl)
+	ScreenNTSC(320, 240, BPP16, fb1)
 
 	nop
 	nop
@@ -35,7 +35,7 @@ Start:	                 // NOTE: base $80000000
 	nop
 
 	// 8x8 pixel font, 16bpp
-	pixel8_static16(red_black, fbl, 32, 16, text, 7)
+	pixel8_static16(red_black, fb1, 16, 16, text, 7)
 
 Loop:  // while(true);
 	j Loop
