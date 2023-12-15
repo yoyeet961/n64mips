@@ -35,6 +35,8 @@ Start:	                 // NOTE: base $80000000
 	nop
 
 	// 8x8 pixel font, 16bpp
+	// top, left
+	// 10240, 10256
 	pixel8_static16(red_black, fb1, 32, 16, text, 7)
 
 Loop:  // while(true);
